@@ -1,12 +1,12 @@
 <script>
-  import Example from "$components/Example.svelte";
+  import Cover from "$components/Cover.svelte";
   import data from "$data/data.js";
   console.log(data);
 </script>
 
 <main>
 
-  <Example />
+  <Cover />
 
 </main>
 
