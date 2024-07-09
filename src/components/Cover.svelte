@@ -476,12 +476,16 @@
 
 
 <style>
-  @font-face {
-    font-family: 'Giantthy';
-    src: url('../../assets/Giantthy.ttf') format('ttf');
+
+
+@font-face {
+
+   font-family: 'Montserrat-Regular';
+    src: url('../../assets/Montserrat-Regular.ttf') format('ttf');
     font-weight: normal;
-    font-style: normal;
-}
+    font-style: normal; 
+
+} 
 
 #Karl
 {
