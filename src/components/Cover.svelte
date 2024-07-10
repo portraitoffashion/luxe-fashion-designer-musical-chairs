@@ -476,16 +476,18 @@
 
 
 <style>
-
-
 @font-face {
-
-   font-family: 'Montserrat-Regular';
-    src: url('../../assets/Montserrat-Regular.ttf') format('ttf');
+    font-family: 'Conte Script Plus';
+    src: url('ConteScriptPlus-Regular.eot');
+    src: local('Conte Script Plus'), local('ConteScriptPlus-Regular'),
+        url('../../assets/fonts/ConteScriptPlus-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../../assets/fonts/ConteScriptPlus-Regular.woff2') format('woff2'),
+        url('../../assets/fonts/ConteScriptPlus-Regular.woff') format('woff'),
+        url('../../assets/fonts/ConteScriptPlus-Regular.ttf') format('truetype');
     font-weight: normal;
-    font-style: normal; 
+    font-style: normal;
+}
 
-} 
 
 #Karl
 {
@@ -542,19 +544,16 @@
 
 .text {
   position: absolute;
-    bottom: 30px; /* Adjust as needed */
+    bottom: 4vh; /* Adjust as needed */
     left: 50%;
     transform: translateX(-40%);
     width: 100%;
     text-align: left;
     color: black; /* Adjust color as needed */
     z-index: 1; /* Text is above background but below the SVG */
-    font-size: 9vw; /* Responsive font size based on viewport width */
-    font-family: 'Giantthy', sans-serif;
+    font-size: 6vw; /* Responsive font size based on viewport width */
+    font-family: 'Conte Script Plus', sans-serif;
 }
 
 
-
-
-  
 </style>

@@ -21,3 +21,11 @@ body {
   src: url('../../assets/Pangram-Regular.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;}
+
+  @font-face {
+    font-family: 'Pangram-Regular';
+     src: url('../../assets/ConteScriptReduced.ttf') format('ttf');
+     font-weight: normal;
+     font-style: normal; 
+    
+    }
