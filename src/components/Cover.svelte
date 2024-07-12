@@ -1,8 +1,8 @@
 <script>
   const src='$assets/Background.png';
 </script>
-<div class="cover">
-<div class="container">
+
+<div class="container-cover">
 <div class="image-wrapper">
   <img src="../../assets/Background.png" alt="background" class="background" />
   <svg class='overlay' width="100%" height="100%" viewBox="0 0 4000 3000" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">            
@@ -472,7 +472,6 @@
 
 </div>
 
-</div>
 
 
 <style>
@@ -504,7 +503,7 @@
     100% { transform: rotate(-25deg); }
 }
 
-.cover 
+/* .cover 
   {
     margin: 0;
     padding: 0;
@@ -512,15 +511,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.container {
+.container-cover {
   position: relative;
     top: 0;
     left: 0;
     width: 100vw; /* Make the container span the full viewport width */
-    height: 100vh; /* Make the container span the full viewport height */
-    overflow: auto
+    /* height: 100vh; Make the container span the full viewport height */
+    overflow: auto;
 }
 
 .image-wrapper {
@@ -544,7 +543,7 @@
 
 .text {
   position: absolute;
-    bottom: 4vh; /* Adjust as needed */
+    bottom: 5vh; /* Adjust as needed */
     left: 50%;
     transform: translateX(-40%);
     width: 100%;
