@@ -3,64 +3,51 @@
 
 
 let animations = {};
-let logoIds=[];
+let svgIds=['hermes-01','chanel-02','dior-03','louis-vuitton-04']
 
 function getRandomDelay() {
-  return Math.random() * 2; // Random delay between 0 to 5 seconds
+  return Math.random() * 5; // Random delay between 0 to 5 seconds
 }
 
 onMount(async () => {
-
-      // Create and append a <style> element with dynamic keyframes
-        const style = document.createElement('style');
-    style.type = 'text/css';
-
     
-    // Get all the SVG elements
-    const svgElements=document.querySelectorAll('.logo')
-    // Get the list IDs of the SVG elements
-    logoIds=Array.from(svgElements).map(svg=>svg.getAttribute('id'))
-    // console.log(logoIds)
-  
-    logoIds.forEach(id => {
-      const delay1 = 4 + getRandomDelay();
-      const delay2 = 2 + getRandomDelay();
+    svgIds.forEach(id => {
+
+      const delay = getRandomDelay();
       const animationName = `move-up-${id}`;
 
       animations[id] = {
-        delay1,
-        delay2,
+        delay,
         animationName
       };
 
+      // Create and append a <style> element with dynamic keyframes
+      const style = document.createElement('style');
+      style.type = 'text/css';
       style.innerHTML += `
-        @keyframes ${animationName} {
-          to {
-            stroke-dashoffset: 0;
-            transform: translateY(0);
-            opacity: 1;
-          }
+  opacity:0;
         }
       `;
+      document.head.appendChild(style);
     });
-
-    document.head.appendChild(style);
 
     // Wait for the DOM to update
     await tick();
 
+    
+
     // Set the animation properties on the SVG elements
-    logoIds.forEach((id,index) => {
+    svgIds.forEach(id => {
+
       const svgElement = document.getElementById(id);
-      if (svgElement) {
-        svgElement.style.animationName = animations[id].animationName;
-        svgElement.style.animationDelay = id in ['hermes-01','chanel-02','dior-03']? `${animations[id].delay1}s`:`${animations[id].delay2}s`;
-        console.log(svgElement);  // Should now log the actual SVG elements
-      } else {
-        console.log(`Element with id ${id} not found`);
-      }
+      svgElement.style.animationName = animations[id].animationName;
+      svgElement.style.animationDelay = `${animations[id].delay}s`;
     });
   });
+   
+   
+
+
 
 </script>
 <div class='container-hierarchy'>
@@ -69,7 +56,7 @@ onMount(async () => {
         <defs>
             <filter id="handDrawnEffect">
               <!-- Create turbulence to simulate the randomness of a hand-drawn line -->
-              <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="50" result="noise" />
+              <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" result="noise" />
               <!-- Use displacement map to apply the turbulence to the line -->
               <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" />
               <!-- Add a slight blur to soften the edges -->
@@ -3357,9 +3344,7 @@ animation-delay:  1s, 2s;
     }
   }
 
-.logo {
-    opacity: 0;
-    transform: translateY(50px); /* Start 50 pixels down */
-    animation: 2s ease forwards;
-}
+  #hermes-01 {
+    opacity:0;
+  }
 </style>
