@@ -4,60 +4,16 @@
 
 let animations = {};
 let logoIds=[];
+
+let swordAnimations = {};
 let swordIds =[];
-let observer
 
 
 function getRandomDelay() {
-  return Math.random() * 0.5; // Random delay between 0 to 5 seconds
-}
-
-function startAnimation(entries) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      console.log(`Checking element with id ${id}, isIntersecting: ${entry.isIntersecting}`);
-      const animationName = animations[id].animationName;
-      const animationDelay = animations[id].delay ? `${animations[id].delay}s` : `${getRandomDelay()}s`;
-
-   // Reset the animation
-   entry.target.style.animation = 'none';
-        entry.target.offsetHeight; // Trigger reflow
-        entry.target.style.animation = `${animationName} 1s forwards ${animationDelay}`;
-
-        console.log(`Animating element with id ${id}`);
-      } else {
-        // Reset animation properties when the element leaves the viewport
-        entry.target.style.animation = 'none';
-      }
-  });
-}
-
-function otherAnimation(entries) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.style.fill = 'none';
-entry.style.stroke = 'black';
-entry.style.strokeWidth = '10';
-entry.style.strokeDasharray = '6000';
-entry.style.strokeDashoffset = '6000';
-entry.style.animation = 'draw 2s linear forwards';
-// Reset the animation
-entry.target.style.animation = 'none';
-        entry.target.offsetHeight; // Trigger reflow
-        entry.target.style.animation = `draw 1s forwards 2s`;
-      } else {
-        // Reset animation properties when the element leaves the viewport
-        entry.target.style.animation = 'none';
-      }
-
-
-
-  });
+  return Math.random() * 2; // Random delay between 0 to 5 seconds
 }
 
 onMount(async () => {
-
 
       // Create and append a <style> element with dynamic keyframes
     const style = document.createElement('style');
@@ -66,28 +22,39 @@ onMount(async () => {
 
     // Get all the logo elements
     const logoElements=document.querySelectorAll('.logo')
+    // Add animate class to the logo elements
+    logoElements.forEach(element => {
+      element.classList.add('animate');
+    })
     // Get the list IDs of the logo elements
     logoIds=Array.from(logoElements).map(svg=>svg.getAttribute('id'))
     // console.log(logoIds)
 
      // Get all the sword elements
     const swordElements=document.querySelectorAll('.sword')
+      // Add animate class to the logo elements
+    swordElements.forEach(element => {
+      element.classList.add('animate');
+    })
     // Get the list IDs of the sword elements
     swordIds=Array.from(swordElements).map(svg=>svg.getAttribute('id'))
   
     // Create keyframes for each logo element
     logoIds.forEach(id => {
-      const delay = 5 + getRandomDelay();
+      const delay1 = 4 + getRandomDelay();
+      const delay2 = 3 + getRandomDelay();
       const animationName = `move-up-${id}`;
-      animations[id] = { animationName };
+
+      animations[id] = {
+        delay1,
+        delay2,
+        animationName
+      };
 
       style.innerHTML += `
         @keyframes ${animationName} {
-          from {
-            transform: translateY(100px);
-            opacity: 0;
-          }
           to {
+            stroke-dashoffset: 0;
             transform: translateY(0);
             opacity: 1;
           }
@@ -95,13 +62,12 @@ onMount(async () => {
       `;
     });
 
-
-   
+    document.head.appendChild(style);
 
         // Create keyframes for each sword element
 
         swordIds.slice().reverse().forEach((id, index) => {
-      const delay = 2+ index * 0.2; // Stagger delay by 0.5 seconds for each sword
+      const delay = 2+index * 0.2; // Stagger delay by 0.5 seconds for each sword
       const animationName = `appear-${id}`;
 
       animations[id] = {
@@ -129,43 +95,61 @@ onMount(async () => {
     // Wait for the DOM to update
     await tick();
 
-    // Initialize the IntersectionObserver after the DOM has been updated
-  const observer = new IntersectionObserver(startAnimation, { threshold: 0.5});
+    //Add IntersectionObserver
 
-  // Use Intersection Observer to determine if objects are within the viewport
-	const otherObserver = new IntersectionObserver(otherAnimation, { threshold: 0.5});
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        } else {
+          entry.target.classList.remove('in-view');
+        }
+      });
+    });
 
-	// Get all the elements with the .animate class applied
-	const allAnimatedElements = document.querySelectorAll('.animate');
+     // Get all elements you want to observe
+     const elements = document.querySelectorAll('.animate');
 
-	// Add the observer to each of those elements
-	allAnimatedElements.forEach((element) => otherObserver.observe(element));
-
-// Set the animation properties on the logo elements
-logoIds.forEach(id => {
-  const svgElement = document.getElementById(id);
-  if (svgElement) {
-    console.log(`Observing logo element with id ${id}`);
-    observer.observe(svgElement);
-  } else {
-    console.log(`Element with id ${id} not found`);
-  }
-});
-
-// Set the animation properties on the sword elements
-swordIds.forEach(id => {
-  const svgElement = document.getElementById(id);
-  if (svgElement) {
-    console.log(`Observing sword element with id ${id}`);
-    observer.observe(svgElement);
-  } else {
-    console.log(`Element with id ${id} not found`);
-  }
-});
-
-
+// Observe each element
+elements.forEach(element => {
+  observer.observe(element);
 
 });
+
+// Optionally, return a cleanup function to unobserve elements when the component is destroyed
+return () => {
+  elements.forEach(element => {
+    observer.unobserve(element);
+  });
+};
+
+    // Set the animation properties on the logo elements
+    logoIds.forEach((id,index) => {
+      const svgElement = document.getElementById(id);
+      if (svgElement && svgElement.classList.contains('in-view')) {
+      
+        svgElement.style.animationName = animations[id].animationName;
+        svgElement.style.animationDelay = id in ['hermes-01','chanel-02','dior-03']? `${animations[id].delay1}s`:`${animations[id].delay2}s`;
+        console.log(svgElement);  // Should now log the actual SVG elements
+      } else {
+        console.log(`Element with id ${id} not found`);
+      }
+    });
+
+
+
+    swordIds.forEach(id => {
+      const svgElement = document.getElementById(id);
+      if (svgElement) {
+        svgElement.style.animation = `${animations[id].animationName} 2s ease forwards ${animations[id].delay}s`;
+        console.log(svgElement);  // Should now log the actual SVG elements
+      } else {
+        console.log(`Element with id ${id} not found`);
+      }
+    });
+
+
+  });
 
 </script>
 <div class='container-hierarchy'>
@@ -8265,7 +8249,7 @@ swordIds.forEach(id => {
 }
 
 
-.triangle.in-view {
+#triangle.in-view {
         fill: none;
         stroke: black;
         stroke-width: 10;
@@ -8281,7 +8265,7 @@ swordIds.forEach(id => {
 animation-delay:  2s;
 }
 
-#top.in-view {
+#top {
     
     animation-delay: 2s;
     transform: translateY(50px); 
