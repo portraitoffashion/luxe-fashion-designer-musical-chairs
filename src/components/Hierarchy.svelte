@@ -33,15 +33,15 @@ function startAnimation(entries) {
   });
 }
 
-function otherAnimation(entries) {
-  entries.forEach(entry => {
+function otherAnimation(entry) {
     if (entry.isIntersecting) {
-      entry.style.fill = 'none';
-entry.style.stroke = 'black';
-entry.style.strokeWidth = '10';
-entry.style.strokeDasharray = '6000';
-entry.style.strokeDashoffset = '6000';
-entry.style.animation = 'draw 2s linear forwards';
+      console.log(entry.target)
+      entry.target.style.fill = 'none';
+entry.target.style.stroke = 'black';
+entry.target.style.strokeWidth = '10';
+entry.target.style.strokeDasharray = '6000';
+entry.target.style.strokeDashoffset = '6000';
+entry.target.style.animation = 'draw 2s linear forwards';
 // Reset the animation
 entry.target.style.animation = 'none';
         entry.target.offsetHeight; // Trigger reflow
@@ -50,11 +50,8 @@ entry.target.style.animation = 'none';
         // Reset animation properties when the element leaves the viewport
         entry.target.style.animation = 'none';
       }
+ };
 
-
-
-  });
-}
 
 onMount(async () => {
 
@@ -101,7 +98,7 @@ onMount(async () => {
         // Create keyframes for each sword element
 
         swordIds.slice().reverse().forEach((id, index) => {
-      const delay = 2+ index * 0.2; // Stagger delay by 0.5 seconds for each sword
+      const delay = index * 0.2; // Stagger delay by 0.5 seconds for each sword
       const animationName = `appear-${id}`;
 
       animations[id] = {
@@ -135,11 +132,9 @@ onMount(async () => {
   // Use Intersection Observer to determine if objects are within the viewport
 	const otherObserver = new IntersectionObserver(otherAnimation, { threshold: 0.5});
 
-	// Get all the elements with the .animate class applied
-	const allAnimatedElements = document.querySelectorAll('.animate');
-
-	// Add the observer to each of those elements
-	allAnimatedElements.forEach((element) => otherObserver.observe(element));
+// 	// Add the observer to triangle
+// const triangle=document.getElementById("#triangle");
+// 	otherObserver.observe(triangle);
 
 // Set the animation properties on the logo elements
 logoIds.forEach(id => {
