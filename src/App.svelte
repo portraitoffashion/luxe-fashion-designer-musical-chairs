@@ -1,6 +1,7 @@
 <script>
    import Cover from "$components/Cover.svelte";
    import Hierarchy from "$components/Hierarchy.svelte";
+   import Snakes from "$components/Snakes.svelte";
   import Tooltip from "$components/Tooltip.svelte";
   import data from "$data/data.js";
 
@@ -65,7 +66,7 @@
 
 
   <Hierarchy />
-
+<Snakes />
   <h1>Students who studied longer scored higher on their final exams</h1>
   <SampleText />
   <section>

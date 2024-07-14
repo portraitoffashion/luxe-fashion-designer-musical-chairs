@@ -543,9 +543,9 @@
 
 .text {
   position: absolute;
-    bottom: 5vh; /* Adjust as needed */
+    bottom: 25vh; /* Adjust as needed */
     left: 50%;
-    transform: translateX(-40%);
+    transform: translateX(-35%);
     width: 100%;
     text-align: left;
     color: black; /* Adjust color as needed */
