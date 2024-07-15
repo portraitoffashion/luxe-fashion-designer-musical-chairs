@@ -16,7 +16,7 @@ function startAnimation(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.getAttribute('id');
-      console.log(`Checking element with id ${id}, isIntersecting: ${entry.isIntersecting}`);
+      // console.log(`Checking element with id ${id}, isIntersecting: ${entry.isIntersecting}`);
       const animationName = animations[id].animationName;
       const animationDelay = animations[id].delay ? `${animations[id].delay}s` : `${getRandomDelay()}s`;
 
@@ -25,33 +25,13 @@ function startAnimation(entries) {
         entry.target.offsetHeight; // Trigger reflow
         entry.target.style.animation = `${animationName} 1s forwards ${animationDelay}`;
 
-        console.log(`Animating element with id ${id}`);
+        // console.log(`Animating element with id ${id}`);
       } else {
         // Reset animation properties when the element leaves the viewport
         entry.target.style.animation = 'none';
       }
   });
 }
-
-function otherAnimation(entry) {
-    if (entry.isIntersecting) {
-      console.log(entry.target)
-      entry.target.style.fill = 'none';
-entry.target.style.stroke = 'black';
-entry.target.style.strokeWidth = '10';
-entry.target.style.strokeDasharray = '6000';
-entry.target.style.strokeDashoffset = '6000';
-entry.target.style.animation = 'draw 2s linear forwards';
-// Reset the animation
-entry.target.style.animation = 'none';
-        entry.target.offsetHeight; // Trigger reflow
-        entry.target.style.animation = `draw 1s forwards 2s`;
-      } else {
-        // Reset animation properties when the element leaves the viewport
-        entry.target.style.animation = 'none';
-      }
- };
-
 
 onMount(async () => {
 
@@ -129,18 +109,11 @@ onMount(async () => {
     // Initialize the IntersectionObserver after the DOM has been updated
   const observer = new IntersectionObserver(startAnimation, { threshold: 0.5});
 
-  // Use Intersection Observer to determine if objects are within the viewport
-	const otherObserver = new IntersectionObserver(otherAnimation, { threshold: 0.5});
-
-// 	// Add the observer to triangle
-// const triangle=document.getElementById("#triangle");
-// 	otherObserver.observe(triangle);
-
 // Set the animation properties on the logo elements
 logoIds.forEach(id => {
   const svgElement = document.getElementById(id);
   if (svgElement) {
-    console.log(`Observing logo element with id ${id}`);
+    // console.log(`Observing logo element with id ${id}`);
     observer.observe(svgElement);
   } else {
     console.log(`Element with id ${id} not found`);
@@ -151,7 +124,7 @@ logoIds.forEach(id => {
 swordIds.forEach(id => {
   const svgElement = document.getElementById(id);
   if (svgElement) {
-    console.log(`Observing sword element with id ${id}`);
+    // console.log(`Observing sword element with id ${id}`);
     observer.observe(svgElement);
   } else {
     console.log(`Element with id ${id} not found`);
@@ -8250,17 +8223,18 @@ swordIds.forEach(id => {
 <style>
     .container-hierarchy {
     width: 100vw; /* Make the container span the full viewport width */
+    height: 50%;
     /* overflow: auto */
 }
 
 .hierarchy {
     width: 40%;
-    height: auto;
+   
 
 }
 
 
-.triangle.in-view {
+.triangle {
         fill: none;
         stroke: black;
         stroke-width: 10;
@@ -8269,14 +8243,20 @@ swordIds.forEach(id => {
         animation: draw 2s linear forwards;
       }
 
-#bottom.in-view
+      @keyframes draw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+#bottom
 {  
     opacity:0;
     animation: fade-in 2s forwards;
 animation-delay:  2s;
 }
 
-#top.in-view {
+#top {
     
     animation-delay: 2s;
     transform: translateY(50px); 
@@ -8285,11 +8265,7 @@ animation-delay:  2s;
     animation-delay:  2s, 2s;
 }
 
-@keyframes draw {
-        to {
-          stroke-dashoffset: 0;
-        }
-      }
+
 
 @keyframes move-up {
       from {
