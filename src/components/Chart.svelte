@@ -90,7 +90,7 @@
       border-radius: 6px;
   
       /* Optional */
-      max-width: 700px;
+      max-width: 800px;
       max-height: 450px;
     }
   

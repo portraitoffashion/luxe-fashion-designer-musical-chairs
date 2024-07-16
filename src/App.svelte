@@ -8,17 +8,17 @@
   import { scaleLinear } from "d3-scale";
   import { max } from "d3-array";
 
-  let width = 400,
-    height = 400;
+  let width = 800,
+    height = 800;
 
-  const margin = { top: 25, right: 25, bottom: 30, left: 10 };
+  const margin = { top: 25, right: 25, bottom: 30, left: 50 };
   const radius = 10;
 
   $: innerWidth = width - margin.left - margin.right;
   $: innerHeight = height - margin.top - margin.bottom;
 
   $: xScale = scaleLinear()
-    .domain([0, 100])
+    .domain([1990, 2024])
     .range([0, innerWidth]);
 
   $: yScale = scaleLinear()
