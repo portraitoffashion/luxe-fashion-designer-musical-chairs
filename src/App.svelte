@@ -4,15 +4,19 @@
    import Snakes from "$components/Snakes.svelte";
   import Tooltip from "$components/Tooltip.svelte";
   import data from "$data/data.js";
+  import logo from "$data/logo.js";
 
   import { scaleLinear } from "d3-scale";
+  import { scaleBand } from "d3-scale";
   import { max } from "d3-array";
 
+  let logoData = logo.sort((a, b) => a.index - b.index);
   let width = 800,
     height = 200;
 
   const margin = { top: 25, right: 25, bottom: 30, left: 50 };
   const radius = 10;
+  
 
   $: innerWidth = width - margin.left - margin.right;
   $: innerHeight = height - margin.top - margin.bottom;
@@ -21,8 +25,8 @@
     .domain([1990, 2024])
     .range([0, innerWidth]);
 
-  $: yScale = scaleLinear()
-    .domain([0, max(data, d => d.hours)])
+  $: yScale = scaleBand()
+    .domain(logo.map(d=>d.brand))
     .range([innerHeight, 0]);
 
   let hoveredData;
@@ -79,6 +83,7 @@
       {xScale}
       {renderedData}
       {radius}
+      {logoData}
       bind:width={width}
       bind:height={height}
       bind:hoveredData={hoveredData}

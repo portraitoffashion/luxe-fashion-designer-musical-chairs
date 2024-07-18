@@ -11,7 +11,7 @@
     export let xScale;
     export let renderedData;
     export let radius;
-  
+    export let logoData;
     import { fly } from "svelte/transition";
   
     import AxisX from "$components/AxisX.svelte";
@@ -28,8 +28,7 @@
     <svg {width} {height} on:mouseleave={() => (hoveredData = null)}>
       <g class="inner-chart" transform="translate({margin.left}, {margin.top})">
    
-          <AxisY width={innerWidth} {yScale} />
-      
+          <AxisY width={innerWidth} {yScale} {logoData}/>
 
           <AxisX height={innerHeight} width={innerWidth} {xScale} />
  
