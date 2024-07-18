@@ -9,7 +9,7 @@
   import { max } from "d3-array";
 
   let width = 800,
-    height = 800;
+    height = 200;
 
   const margin = { top: 25, right: 25, bottom: 30, left: 50 };
   const radius = 10;
@@ -97,7 +97,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+     min-height: 100vh;
     /* background: #f0f0f0; */
   }
 
