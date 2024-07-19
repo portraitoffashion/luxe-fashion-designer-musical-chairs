@@ -1,4 +1,6 @@
 <script>
+ 
+
     export let width;
     export let yScale;
     export let logoData;
@@ -7,14 +9,16 @@ console.log(logoData)
   
   <g class='axis y'>
   {#each logoData as {brand, logo}}
+
   <g class='tick' transform="translate(0, {yScale(brand)})">
     <image
     href={logo}
-    x=5
+    x=0
     y={yScale(brand)}
-    width="30"
-    height="30"
+    height={brand=="Alexander McQueen"? "20":"10"}
     />
+    <text  x=5
+    y={yScale(brand)}>{brand}</text>
   </g>
   {/each}
   </g>

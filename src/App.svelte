@@ -10,9 +10,10 @@
   import { scaleBand } from "d3-scale";
   import { max } from "d3-array";
 
-  let logoData = logo.sort((a, b) => a.index - b.index);
+  let logoData = logo.sort((a, b) => b.index - a.index);
+  console.log(logoData)
   let width = 800,
-    height = 200;
+    height = 900;
 
   const margin = { top: 25, right: 25, bottom: 30, left: 50 };
   const radius = 10;
@@ -27,7 +28,7 @@
 
   $: yScale = scaleBand()
     .domain(logo.map(d=>d.brand))
-    .range([innerHeight, 0]);
+    .range([500, 0]);
 
   let hoveredData;
 
@@ -102,7 +103,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-     min-height: 100vh;
+    min-height: 100vh;
     /* background: #f0f0f0; */
   }
 

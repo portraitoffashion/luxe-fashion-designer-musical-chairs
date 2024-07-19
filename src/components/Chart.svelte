@@ -67,7 +67,7 @@
       top: 0;
       z-index: 1;
   
-      height: 95vh;
+      height: 90vh;
       width: 100%;
       top: 2.5vh;
       margin-bottom: 1rem;
@@ -80,8 +80,8 @@
   
     .chart-container {
       position: relative;
-      width: 100%;
-      height: 100%;
+      /* width: 100%;
+      height: 100%; */
   
       background: white;
       box-shadow: 1px 1px 30px rgba(252, 220, 252, 1);
@@ -90,7 +90,7 @@
   
       /* Optional */
       max-width: 800px;
-      max-height: 450px;
+      max-height: 1200px;
     }
   
     circle {
