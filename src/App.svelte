@@ -24,11 +24,11 @@
 
   $: xScale = scaleLinear()
     .domain([1990, 2024])
-    .range([0, innerWidth]);
+    .range([50, innerWidth]);
 
   $: yScale = scaleBand()
     .domain(logo.map(d=>d.brand))
-    .range([500, 0]);
+    .range([500, 30]);
 
   let hoveredData;
 
@@ -92,7 +92,7 @@
     <Steps bind:currentStep={currentStep} />
   </section>
   <SampleText />
-
+  <SampleText />
 </main>
 
 <style>

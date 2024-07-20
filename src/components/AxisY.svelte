@@ -13,11 +13,11 @@ console.log(logoData)
   <g class='tick' transform="translate(0, {yScale(brand)})">
     <image
     href={logo}
-    x=0
+    x=-40
     y={yScale(brand)}
-    height={brand=="Alexander McQueen"? "20":"10"}
+    height={brand=="Alexander McQueen"? "20":"8"}
     />
-    <text  x=5
+    <text  x=-30
     y={yScale(brand)}>{brand}</text>
   </g>
   {/each}
