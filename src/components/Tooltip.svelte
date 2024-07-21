@@ -12,8 +12,8 @@
 
     let mouseEvent;
 
-$: x = mouseEvent ? mouseEvent.clientX : 0;
-$: y = mouseEvent ? mouseEvent.clientY : 0;
+$: x = xScale(data.year);
+$: y = yScale(data.brand);
     $: isFallingOffChart=tooltipWidth+x>width
     $: xPosition = isFallingOffChart ? x-tooltipWidth-xNudge : x+xNudge;
     $: yPosition = y+yNudge;
