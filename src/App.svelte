@@ -13,7 +13,7 @@
 
   let logoData = logo.sort((a, b) => b.index - a.index);
   let headshotData = headshot.sort((a, b) => b.index - a.index);
-  console.log(headshotData)
+
 
 
   let width = 800,

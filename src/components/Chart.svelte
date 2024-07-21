@@ -4,6 +4,7 @@
     export let height;
     export let currentStep;
     export let hoveredData;
+    export let hoveredData2;
     export let margin;
     export let innerWidth;
     export let innerHeight;
@@ -19,6 +20,7 @@
     import AxisY from "$components/AxisY.svelte";
     import Tooltip from "$components/Tooltip.svelte";
     let jointDesigners = ['Marc Jacobs and Paul Helbers','Raf Simons and Miuccia Prada','Maria Grazia Chiuri and Pierpaolo Piccioli']
+  
   </script>
   
   <div class="sticky">
@@ -34,14 +36,17 @@
 
           <AxisX height={innerHeight} width={innerWidth} {xScale} />
 
-          {#each headshotData as {brand, designer, year, url}}
+          {#each headshotData as d}
 
-          <g class='headshot' transform="translate(0, {yScale(brand)})" >
+          <g class='headshot' transform="translate(0, {yScale(d.brand)})" >
             <image
-            href={url}
-            x={xScale(year)-25}
-            y={yScale(brand)-20}
-            width={jointDesigners.includes(designer)? 60:40}
+            href={d.url}
+            x={xScale(d.year)-25}
+            y={yScale(d.brand)-20}
+            width={jointDesigners.includes(d.designer)? 60:40}
+            on:mouseover={() =>hoveredData2 = d }
+            on:focus={() => hoveredData2 = d}
+            tabindex="0"
             />
           </g>
           {/each}
@@ -64,8 +69,8 @@
     
       </g>
     </svg>
-    {#if hoveredData}
-      <Tooltip {xScale} {yScale} {width} data={hoveredData} />
+    {#if hoveredData2}
+      <Tooltip {xScale} {yScale} {width} data={hoveredData2} />
     {/if}
   </div>
   </div>

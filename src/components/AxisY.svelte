@@ -4,7 +4,7 @@
     export let xScale;
     export let logoData;
     let genderBrands=['Louis Vuitton Men','Louis Vuitton Women','Hermes Men','Hermes Women','Dior Men','Dior Women','Fendi Men','Fendi Women']
-console.log(logoData)
+// console.log(logoData)
   </script>
   
   <g class='axis y'>

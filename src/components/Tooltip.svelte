@@ -1,14 +1,19 @@
 <script>
     export let data;
+    export let jointDesigners;
     export let xScale;
     export let yScale;
     export let width;
 
     let tooltipWidth;
-    const xNudge=10;
-    const yNudge=20;
-    $: x= xScale(data.grade);
-    $: y= yScale(data.hours);
+    const xNudge=100;
+    const yNudge=0;
+    console.log(data)
+
+    let mouseEvent;
+
+$: x = mouseEvent ? mouseEvent.clientX : 0;
+$: y = mouseEvent ? mouseEvent.clientY : 0;
     $: isFallingOffChart=tooltipWidth+x>width
     $: xPosition = isFallingOffChart ? x-tooltipWidth-xNudge : x+xNudge;
     $: yPosition = y+yNudge;
@@ -24,8 +29,12 @@ out:fly={{y:20, duration: 300}}
 bind:clientWidth={tooltipWidth}
 class="tooltip"
 style="left:{xPosition}px; top:{yPosition}px">
-    <h1>{data.name}<span>{data.grade}%</span></h1>
-    <h2>{data.hours}hours studied </h2>
+<img
+src={data.url}
+style="width: 150px; height: auto;"/>
+    <h1>{data.designer}<span>{data.year}%</span></h1>
+    <h2>{data.year} appointed in </h2>
+
 </div>
   <style>
     .tooltip {
