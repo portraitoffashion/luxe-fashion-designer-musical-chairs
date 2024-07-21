@@ -18,6 +18,7 @@
     import AxisX from "$components/AxisX.svelte";
     import AxisY from "$components/AxisY.svelte";
     import Tooltip from "$components/Tooltip.svelte";
+    let jointDesigners = ['Marc Jacobs and Paul Helbers','Raf Simons and Miuccia Prada','Maria Grazia Chiuri and Pierpaolo Piccioli']
   </script>
   
   <div class="sticky">
@@ -33,16 +34,18 @@
 
           <AxisX height={innerHeight} width={innerWidth} {xScale} />
 
-          {#each headshotData as {brand, year, url}}
+          {#each headshotData as {brand, designer, year, url}}
+{#if brand=='Maison Margiela' }
 
           <g class='headshot' transform="translate(0, {yScale(brand)})">
             <image
             href={url}
             x={xScale(year)}
             y={yScale(brand)}
-            width=50
+            width={jointDesigners.includes(designer)? 70:50}
             />
           </g>
+        {/if}
           {/each}
  
         {#each renderedData as d}
