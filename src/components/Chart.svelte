@@ -30,7 +30,7 @@
     <svg {width} {height} on:mouseleave={() => (hoveredData = null)}>
       <g class="inner-chart" transform="translate({margin.left}, {margin.top})">
    
-          <AxisY width={innerWidth} {yScale} {logoData}/>
+          <AxisY width={innerWidth} {yScale} {logoData} {xScale}/>
 
           <AxisX height={innerHeight} width={innerWidth} {xScale} />
 
@@ -39,7 +39,7 @@
           <g class='headshot' transform="translate(0, {yScale(brand)})" >
             <image
             href={url}
-            x={xScale(year)}
+            x={xScale(year)-25}
             y={yScale(brand)-20}
             width={jointDesigners.includes(designer)? 60:40}
             />

@@ -19,7 +19,7 @@
   let width = 800,
     height = 900;
 
-  const margin = { top: 20, right: 25, bottom: 20, left: 50 };
+  const margin = { top: 20, right: 100, bottom: 20, left: 100 };
   const radius = 10;
   
 
@@ -28,7 +28,7 @@
 
   $: xScale = scaleLinear()
     .domain([1990, 2024])
-    .range([50, innerWidth]);
+    .range([margin.left, innerWidth]);
 
   $: yScale = scaleBand()
     .domain(logo.map(d=>d.brand))
