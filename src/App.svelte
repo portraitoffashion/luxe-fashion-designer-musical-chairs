@@ -32,7 +32,7 @@
 
   $: yScale = scaleBand()
     .domain(logo.map(d=>d.brand))
-    .range([500, 30]);
+    .range([600, 30]);
 
   let hoveredData;
 

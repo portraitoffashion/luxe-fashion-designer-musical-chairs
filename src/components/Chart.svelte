@@ -35,7 +35,7 @@
 
           {#each headshotData as {brand, year, url}}
 
-          <g class='headshot' transform="translate({xScale(year)}, {yScale(brand)})">
+          <g class='headshot' transform="translate(0, {yScale(brand)})">
             <image
             href={url}
             x={xScale(year)}
