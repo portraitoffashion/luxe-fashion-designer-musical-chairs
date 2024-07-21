@@ -35,17 +35,15 @@
           <AxisX height={innerHeight} width={innerWidth} {xScale} />
 
           {#each headshotData as {brand, designer, year, url}}
-{#if brand=='Maison Margiela' }
 
-          <g class='headshot' transform="translate(0, {yScale(brand)})">
+          <g class='headshot' transform="translate(0, {yScale(brand)})" >
             <image
             href={url}
             x={xScale(year)}
-            y={yScale(brand)}
-            width={jointDesigners.includes(designer)? 70:50}
+            y={yScale(brand)-20}
+            width={jointDesigners.includes(designer)? 60:40}
             />
           </g>
-        {/if}
           {/each}
  
         {#each renderedData as d}

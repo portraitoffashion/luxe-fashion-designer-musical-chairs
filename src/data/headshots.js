@@ -485,7 +485,7 @@ export default
   },
   {
     "index": 70,
-    "brand": "Jonathan Anderson",
+    "brand": "Loewe",
     "designer": "Jonathan Anderson",
     "year": 2013,
     "url": "https://raw.githubusercontent.com/portraitoffashion/luxe-fashion-designer-musical-chairs/master/assets/headshots/Jonathan%20Anderson.png"

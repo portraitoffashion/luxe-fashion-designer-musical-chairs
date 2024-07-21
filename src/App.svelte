@@ -19,7 +19,7 @@
   let width = 800,
     height = 900;
 
-  const margin = { top: 25, right: 25, bottom: 30, left: 50 };
+  const margin = { top: 20, right: 25, bottom: 20, left: 50 };
   const radius = 10;
   
 

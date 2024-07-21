@@ -127,7 +127,7 @@ export default [
   },
   {
     "index": 22,
-    "brand": "Masion Margiela",
+    "brand": "Maison Margiela",
     "revenue": 0.4,
     "logo": "https://raw.githubusercontent.com/portraitoffashion/luxe-fashion-designer-musical-chairs/master/assets/logos/maison-margiela-11.logo.secondtier.svg"
   }
