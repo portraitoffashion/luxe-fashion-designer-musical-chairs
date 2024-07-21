@@ -5,13 +5,17 @@
   import Tooltip from "$components/Tooltip.svelte";
   import data from "$data/data.js";
   import logo from "$data/logo.js";
+  import headshot from "$data/headshots.js";
 
   import { scaleLinear } from "d3-scale";
   import { scaleBand } from "d3-scale";
   import { max } from "d3-array";
 
   let logoData = logo.sort((a, b) => b.index - a.index);
-  console.log(logoData)
+  let headshotData = headshot.sort((a, b) => b.index - a.index);
+  console.log(headshotData)
+
+
   let width = 800,
     height = 900;
 
@@ -85,6 +89,7 @@
       {renderedData}
       {radius}
       {logoData}
+      {headshotData}
       bind:width={width}
       bind:height={height}
       bind:hoveredData={hoveredData}

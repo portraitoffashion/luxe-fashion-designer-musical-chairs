@@ -12,6 +12,7 @@
     export let renderedData;
     export let radius;
     export let logoData;
+    export let headshotData;
     import { fly } from "svelte/transition";
   
     import AxisX from "$components/AxisX.svelte";
@@ -31,6 +32,18 @@
           <AxisY width={innerWidth} {yScale} {logoData}/>
 
           <AxisX height={innerHeight} width={innerWidth} {xScale} />
+
+          {#each headshotData as {brand, year, url}}
+
+          <g class='headshot' transform="translate({xScale(year)}, {yScale(brand)})">
+            <image
+            href={url}
+            x={xScale(year)}
+            y={yScale(brand)}
+            width=50
+            />
+          </g>
+          {/each}
  
         {#each renderedData as d}
           <circle
@@ -46,6 +59,8 @@
             tabindex="0"
           />
         {/each}
+
+    
       </g>
     </svg>
     {#if hoveredData}
@@ -84,13 +99,13 @@
       height: 100%;
   
       background: white;
-      box-shadow: 1px 1px 30px rgba(252, 220, 252, 1);
-      border: 1px solid plum;
-      border-radius: 6px;
+      /* box-shadow: 1px 1px 30px rgba(252, 220, 252, 1); */
+      /* border: 1px solid plum; */
+      /* border-radius: 6px; */
   
       /* Optional */
-      max-width: 1000px;
-      max-height: 1200px;
+      width: 1200px;
+      height: 1200px;
     }
   
     circle {
