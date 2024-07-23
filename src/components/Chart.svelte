@@ -20,7 +20,7 @@
     import AxisY from "$components/AxisY.svelte";
     import Tooltip from "$components/Tooltip.svelte";
     let jointDesigners = ['Marc Jacobs and Paul Helbers','Raf Simons and Miuccia Prada','Maria Grazia Chiuri and Pierpaolo Piccioli']
-  
+    console.log (logoData)
   </script>
   
   <div class="sticky">
@@ -36,9 +36,21 @@
 
           <AxisX height={innerHeight} width={innerWidth} {xScale} />
 
+          {#if currentStep===0}
+          <rect x={xScale(1990)} y={yScale("Louis Vuitton Men")} width={xScale(2000)-xScale(1990)} height=1200 fill="rgba(0,0,0,0.1)"/>
+
+          {/if}
+          {#if currentStep===1}
+          <rect x={xScale(2000)} y={yScale("Louis Vuitton Men")} width={xScale(2010)-xScale(2000)} height=1200 fill="rgba(0,0,0,0.1)"/>
+          {/if}
+          {#if currentStep===2}
+          <rect x={xScale(2010)} y={yScale("Louis Vuitton Men")} width={xScale(2024)-xScale(2010)} height=1200 fill="rgba(0,0,0,0.1)"/>
+          {/if}
+
           {#each headshotData as d}
 
           <g class='headshot' transform="translate(0, {yScale(d.brand)})" >
+
             <image
             href={d.url}
             x={xScale(d.year)-25}
@@ -50,6 +62,7 @@
             />
           </g>
           {/each}
+
  
         {#each renderedData as d}
           <circle
@@ -70,7 +83,7 @@
       </g>
     </svg>
     {#if hoveredData2}
-      <Tooltip {xScale} {yScale} {width} data={hoveredData2} />
+      <Tooltip {xScale} {yScale} {width} data={hoveredData2} joinDesigners={jointDesigners} />
     {/if}
   </div>
   </div>

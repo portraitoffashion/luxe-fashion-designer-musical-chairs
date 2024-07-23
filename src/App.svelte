@@ -32,9 +32,10 @@
 
   $: yScale = scaleBand()
     .domain(logo.map(d=>d.brand))
-    .range([600, 30]);
+    .range([600,30]);
 
   let hoveredData;
+  let hoveredData2;
 
   // Scrollytelling
   let currentStep;
@@ -93,6 +94,7 @@
       bind:width={width}
       bind:height={height}
       bind:hoveredData={hoveredData}
+      bind:hoveredData2={hoveredData2}
     />
     <Steps bind:currentStep={currentStep} />
   </section>
