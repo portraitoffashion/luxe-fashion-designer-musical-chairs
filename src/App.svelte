@@ -38,6 +38,7 @@
   let hoveredData2;
 
   // Scrollytelling
+  let currentStep1;
   let currentStep;
 
   let initialData = data.sort((a, b) => a.grade - b.grade);
@@ -66,17 +67,16 @@
   import SampleText from "$components/SampleText.svelte";
   import Chart from "$components/Chart.svelte";
   import Steps from "$components/Steps.svelte";
+  import Steps1 from "$components/Steps1.svelte";
 </script>
 
 <main>
 
   <Cover />
-  
-<div>Yang Zhao</div>
-
-
-  <Hierarchy />
-<Snakes />
+  <Hierarchy 
+  {currentStep1}/>
+  <Steps1 bind:currentStep1={currentStep1} />
+<!-- <Snakes /> -->
   <h1>Students who studied longer scored higher on their final exams</h1>
   <SampleText />
   <section>
@@ -110,7 +110,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     /* background: #f0f0f0; */
   }
 

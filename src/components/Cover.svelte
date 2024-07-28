@@ -543,7 +543,7 @@
 
 .text {
   position: absolute;
-    bottom: 25vh; /* Adjust as needed */
+    bottom: 15vh; /* Adjust as needed */
     left: 50%;
     transform: translateX(-35%);
     width: 100%;
