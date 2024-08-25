@@ -1,7 +1,7 @@
 <script>
+  import Intro from "$components/Intro.svelte";
    import Cover from "$components/Cover.svelte";
    import Hierarchy from "$components/Hierarchy.svelte";
-   import Snakes from "$components/Snakes.svelte";
   import Tooltip from "$components/Tooltip.svelte";
   import data from "$data/data.js";
   import logo from "$data/logo.js";
@@ -16,8 +16,8 @@
 
 
 
-  let width = 800,
-    height = 900;
+let width = 800,
+    height = 600;
 
   const margin = { top: 20, right: 100, bottom: 20, left: 100 };
   const radius = 10;
@@ -73,10 +73,11 @@
 <main>
 
   <Cover />
-  <Hierarchy 
+  <Intro />
+  <Hierarchy  
   {currentStep1}/>
-  <Steps1 bind:currentStep1={currentStep1} />
-<!-- <Snakes /> -->
+ <Steps1 bind:currentStep1={currentStep1} />
+
   <h1>Students who studied longer scored higher on their final exams</h1>
   <SampleText />
   <section>

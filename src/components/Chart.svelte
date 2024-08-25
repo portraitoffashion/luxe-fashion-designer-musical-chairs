@@ -37,14 +37,14 @@
           <AxisX height={innerHeight} width={innerWidth} {xScale} />
 
           {#if currentStep===0}
-          <rect x={xScale(1990)} y={yScale("Louis Vuitton Men")} width={xScale(2000)-xScale(1990)} height=1200 fill="rgba(0,0,0,0.1)"/>
+          <rect x={xScale(1990)} y={yScale("Louis Vuitton Men")} width={xScale(2000)-xScale(1990)} height=600 fill="rgba(0,0,0,0.1)"/>
 
           {/if}
           {#if currentStep===1}
-          <rect x={xScale(2000)} y={yScale("Louis Vuitton Men")} width={xScale(2010)-xScale(2000)} height=1200 fill="rgba(0,0,0,0.1)"/>
+          <rect x={xScale(2000)} y={yScale("Louis Vuitton Men")} width={xScale(2010)-xScale(2000)} height=600 fill="rgba(0,0,0,0.1)"/>
           {/if}
           {#if currentStep===2}
-          <rect x={xScale(2010)} y={yScale("Louis Vuitton Men")} width={xScale(2024)-xScale(2010)} height=1200 fill="rgba(0,0,0,0.1)"/>
+          <rect x={xScale(2010)} y={yScale("Louis Vuitton Men")} width={xScale(2024)-xScale(2010)} height=600 fill="rgba(0,0,0,0.1)"/>
           {/if}
 
           {#each headshotData as d}
@@ -59,6 +59,7 @@
             on:mouseover={() =>hoveredData2 = d }
             on:focus={() => hoveredData2 = d}
             tabindex="0"
+            loading="lazy"
             />
           </g>
           {/each}
